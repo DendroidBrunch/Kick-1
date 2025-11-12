@@ -2,8 +2,6 @@ package com.zhylko.firsttask.service.impl;
 
 import static org.junit.jupiter.api.Assertions.*;
 
-import java.util.function.Predicate;
-
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -69,17 +67,6 @@ class CustomArrayServiceImplTest {
 		int expected = 2;
 		CustomArrayServiceImpl service = new CustomArrayServiceImpl();
 		int actual = service.countPositive(customArray);
-		assertEquals(expected, actual);
-	}
-	
-	@Test
-	void replaceUnderCondition() throws CustomArrayException {
-		CustomArray expected = CustomArray.newCustomArrayBuilder()
-																				.setArray(new int[] {1,0,2,0,0})
-																				.build();
-		CustomArrayReplaceUnderConditionServiceImpl service = new CustomArrayReplaceUnderConditionServiceImpl();
-		Predicate <Integer> predicate = integer -> integer < 0;
-		CustomArray actual = service.replaceUnderCondition(customArray, predicate, 0);
 		assertEquals(expected, actual);
 	}
 }
