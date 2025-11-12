@@ -2,8 +2,7 @@ package com.zhylko.firsttask.entity;
 
 import java.util.Arrays;
 
-import com.zhylko.firsttask.exception.ArrayLengthException;
-import com.zhylko.firsttask.exception.CustomArrayIndexOutOfBoundsException;
+import com.zhylko.firsttask.exception.CustomArrayException;
 
 public class CustomArray  {
 	private long customArrayID;
@@ -21,16 +20,16 @@ public class CustomArray  {
 		return array.length;
 	}
 	
-	public int get(int index) throws CustomArrayIndexOutOfBoundsException {
+	public int get(int index) throws CustomArrayException {
 		if(index < 0 || index > array.length) {
-			throw new CustomArrayIndexOutOfBoundsException(index);
+			throw new CustomArrayException("Index out of bounds: " + index);
 		}
 		return array[index];
 	}
 	
-	public int set(int index, int value)  throws CustomArrayIndexOutOfBoundsException{
+	public int set(int index, int value)  throws CustomArrayException{
 		if(index < 0 || index > array.length) {
-			throw new CustomArrayIndexOutOfBoundsException(index);
+			throw new CustomArrayException("Index out of bounds: " + index);
 		}
 		int ret = array[index];
 		array[index] = value;
@@ -50,9 +49,9 @@ public class CustomArray  {
 			return this;
 		}
 		
-		public CustomArrayBuilder setArray(int length) throws ArrayLengthException {
+		public CustomArrayBuilder setArray(int length) throws CustomArrayException {
 			if(length < 0) {
-				throw new ArrayLengthException(length);
+				throw new CustomArrayException("Illegal array length: " + length);
 			}
 			CustomArray.this.array = new int[length];
 			return this;

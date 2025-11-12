@@ -1,13 +1,13 @@
 package com.zhylko.firsttask.service.impl;
 
 import com.zhylko.firsttask.entity.CustomArray;
-import com.zhylko.firsttask.exception.CustomArrayIndexOutOfBoundsException;
+import com.zhylko.firsttask.exception.CustomArrayException;
 import com.zhylko.firsttask.service.CustomArrayService;
 
 public class CustomArrayServiceImpl implements CustomArrayService{
 
 	@Override
-	public Integer findMax(CustomArray customArray) throws CustomArrayIndexOutOfBoundsException {
+	public Integer findMax(CustomArray customArray) throws CustomArrayException {
 		int length = customArray.getLength();
 		if(length == 0) {
 			return null;
@@ -22,7 +22,7 @@ public class CustomArrayServiceImpl implements CustomArrayService{
 	}
 
 	@Override
-	public Integer findMin(CustomArray customArray) throws CustomArrayIndexOutOfBoundsException {
+	public Integer findMin(CustomArray customArray) throws CustomArrayException {
 		int length = customArray.getLength();
 		if(length == 0) {
 			return null;
@@ -37,7 +37,7 @@ public class CustomArrayServiceImpl implements CustomArrayService{
 	}
 
 	@Override
-	public Integer countSum(CustomArray customArray) throws CustomArrayIndexOutOfBoundsException {
+	public Integer countSum(CustomArray customArray) throws CustomArrayException {
 		int length = customArray.getLength();
 		if(length == 0) {
 			return null;
@@ -50,7 +50,7 @@ public class CustomArrayServiceImpl implements CustomArrayService{
 	}
 	
 	@Override
-	public Double countAverage(CustomArray customArray) throws CustomArrayIndexOutOfBoundsException {
+	public Double countAverage(CustomArray customArray) throws CustomArrayException {
 		int length = customArray.getLength();
 		if(length == 0) {
 			return null;
@@ -61,7 +61,7 @@ public class CustomArrayServiceImpl implements CustomArrayService{
 	}
 
 	@Override
-	public Integer countNegative(CustomArray customArray) throws CustomArrayIndexOutOfBoundsException {
+	public Integer countNegative(CustomArray customArray) throws CustomArrayException {
 		int length = customArray.getLength();
 		if(length == 0) {
 			return null;
@@ -76,7 +76,7 @@ public class CustomArrayServiceImpl implements CustomArrayService{
 	}
 
 	@Override
-	public Integer countPositive(CustomArray customArray) throws CustomArrayIndexOutOfBoundsException {
+	public Integer countPositive(CustomArray customArray) throws CustomArrayException {
 		int length = customArray.getLength();
 		if(length == 0) {
 			return null;

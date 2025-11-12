@@ -2,12 +2,14 @@ package com.zhylko.firsttask.service.impl;
 
 import static org.junit.jupiter.api.Assertions.*;
 
+import java.util.function.Predicate;
+
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import com.zhylko.firsttask.entity.CustomArray;
-import com.zhylko.firsttask.exception.CustomArrayIndexOutOfBoundsException;
+import com.zhylko.firsttask.exception.CustomArrayException;
 
 class CustomArrayServiceImplTest {
 	CustomArray customArray = CustomArray.newCustomArrayBuilder()
@@ -23,7 +25,7 @@ class CustomArrayServiceImplTest {
 	}
 
 	@Test
-	void findMax() throws CustomArrayIndexOutOfBoundsException {
+	void findMax() throws CustomArrayException {
 		int expected = 2;
 		CustomArrayServiceImpl service = new CustomArrayServiceImpl();
 		int actual = service.findMax(customArray);
@@ -31,7 +33,7 @@ class CustomArrayServiceImplTest {
 	}
 	
 	@Test
-	void findMin() throws CustomArrayIndexOutOfBoundsException {
+	void findMin() throws CustomArrayException {
 		int expected = -5;
 		CustomArrayServiceImpl service = new CustomArrayServiceImpl();
 		int actual = service.findMin(customArray);
@@ -39,7 +41,7 @@ class CustomArrayServiceImplTest {
 	}
 
 	@Test
-	void CountSum() throws CustomArrayIndexOutOfBoundsException {
+	void CountSum() throws CustomArrayException {
 		int expected = -9;
 		CustomArrayServiceImpl service = new CustomArrayServiceImpl();
 		int actual = service.countSum(customArray);
@@ -47,7 +49,7 @@ class CustomArrayServiceImplTest {
 	}
 	
 	@Test
-	void countAverage() throws CustomArrayIndexOutOfBoundsException {
+	void countAverage() throws CustomArrayException {
 		double expected = - 1.8;
 		CustomArrayServiceImpl service = new CustomArrayServiceImpl();
 		double actual = service.countAverage(customArray);
@@ -55,7 +57,7 @@ class CustomArrayServiceImplTest {
 	}
 	
 	@Test
-	void countNegative() throws CustomArrayIndexOutOfBoundsException {
+	void countNegative() throws CustomArrayException {
 		int expected = 3;
 		CustomArrayServiceImpl service = new CustomArrayServiceImpl();
 		int actual = service.countNegative(customArray);
@@ -63,10 +65,21 @@ class CustomArrayServiceImplTest {
 	}
 	
 	@Test
-	void countPositive() throws CustomArrayIndexOutOfBoundsException {
+	void countPositive() throws CustomArrayException {
 		int expected = 2;
 		CustomArrayServiceImpl service = new CustomArrayServiceImpl();
 		int actual = service.countPositive(customArray);
+		assertEquals(expected, actual);
+	}
+	
+	@Test
+	void replaceUnderCondition() throws CustomArrayException {
+		CustomArray expected = CustomArray.newCustomArrayBuilder()
+																				.setArray(new int[] {1,0,2,0,0})
+																				.build();
+		CustomArrayReplaceUnderConditionServiceImpl service = new CustomArrayReplaceUnderConditionServiceImpl();
+		Predicate <Integer> predicate = integer -> integer < 0;
+		CustomArray actual = service.replaceUnderCondition(customArray, predicate, 0);
 		assertEquals(expected, actual);
 	}
 }
