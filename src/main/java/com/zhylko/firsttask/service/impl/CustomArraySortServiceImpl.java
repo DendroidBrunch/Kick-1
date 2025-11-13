@@ -33,7 +33,6 @@ public class CustomArraySortServiceImpl implements CustomArraySortService{
 			}
 			left++;
 		}
-		
 		return customArray;
 	}
 
@@ -75,9 +74,40 @@ public class CustomArraySortServiceImpl implements CustomArraySortService{
 	}
 
 	@Override
-	public CustomArray quickSort(CustomArray customArray) throws CustomArrayException {
-		// TODO Auto-generated method stub
-		throw new CustomArrayException("In development");
+	public CustomArray quickSort(CustomArray customArray, int begin, int end) throws CustomArrayException {
+		int length = customArray.getLength();
+		if(begin < 0) {
+			throw new CustomArrayException("Index begin out of range: " + begin);
+		}
+		if(end > length) {
+			throw new CustomArrayException("Index end out of range: " + end);
+		}
+		
+		if(begin >= end) return customArray;
+		
+		int[] pivoted = new int[end - begin];
+		int left = 0;
+		int right = end - begin - 1;
+		int pivot = customArray.get(begin);
+		for(int i = begin + 1; i < end; i++) {
+			if(customArray.get(i) < pivot) {
+				pivoted[left] = customArray.get(i);
+				left++;
+			} else {
+				pivoted[right] = customArray.get(i);
+				right--;
+			}
+		}
+		pivoted[left] = pivot;
+		
+		for(int i = begin; i < end; i++) {
+			customArray.set(i, pivoted[i - begin]);
+		}
+		
+		quickSort(customArray, begin, left + begin);
+		quickSort(customArray, left + 1 + begin, end);
+		
+		return customArray;
 	}
 
 }

@@ -6,5 +6,5 @@ import com.zhylko.firsttask.exception.CustomArrayException;
 public interface CustomArraySortService {
 	CustomArray shakerSort(CustomArray customArray) throws CustomArrayException;
 	CustomArray mergeSort(CustomArray customArray, int begin, int end) throws CustomArrayException;
-	CustomArray quickSort(CustomArray customArray) throws CustomArrayException;
+	CustomArray quickSort(CustomArray customArray, int begin, int end) throws CustomArrayException;
 }

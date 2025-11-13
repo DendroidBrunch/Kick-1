@@ -57,12 +57,25 @@ public class CustomArray  {
 			return this;
 		}
 		
-		public CustomArrayBuilder setArray(int[] value) {
-			CustomArray.this.array = Arrays.copyOf(value, value.length);
+		public CustomArrayBuilder setArray(int[] values) {
+			CustomArray.this.array = Arrays.copyOf(values, values.length);
+			return this;
+		}
+		
+		public CustomArrayBuilder setArray(String[] values) {
+			int length = values.length;
+			int [] arrayValue = new int[length];
+			for(int i = 0; i < length; i++) {
+				arrayValue[i] = Integer.parseInt(values[i]);
+			}
+			CustomArray.this.array = Arrays.copyOf(arrayValue, length);
 			return this;
 		}
 		
 		public CustomArray build() {
+			if(array == null) {
+				array = new int[0];
+			}
 			return CustomArray.this;
 		}
 	}
