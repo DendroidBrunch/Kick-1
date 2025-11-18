@@ -3,7 +3,7 @@ package com.zhylko.firsttask.parser;
 import java.util.List;
 
 public interface CustomArrayParser {
-	String DATA_REGEX = ",.;/|\\[]";
+	String DATA_DELIMITERS_REGEX = "[\\Q [],.;\\/|\\E]+";
 	
-	List<String[]> parseCustomArrayStringList(List<String> customArrayStringList);
+	List<String[]> parse(List<String> stringsToParse);
 }

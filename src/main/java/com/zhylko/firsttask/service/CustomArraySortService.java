@@ -4,7 +4,8 @@ import com.zhylko.firsttask.entity.CustomArray;
 import com.zhylko.firsttask.exception.CustomArrayException;
 
 public interface CustomArraySortService {
-	CustomArray shakerSort(CustomArray customArray) throws CustomArrayException;
-	CustomArray mergeSort(CustomArray customArray, int begin, int end) throws CustomArrayException;
-	CustomArray quickSort(CustomArray customArray, int begin, int end) throws CustomArrayException;
+	void shakerSort(CustomArray customArray) throws CustomArrayException;
+	void mergeSort(CustomArray customArray, int begin, int end) throws CustomArrayException;
+	void quickSort(CustomArray customArray, int begin, int end) throws CustomArrayException;
+	void streamSort(CustomArray customArray) throws CustomArrayException;
 }

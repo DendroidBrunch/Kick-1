@@ -1,7 +1,9 @@
 package com.zhylko.firsttask.validator;
 
+import com.zhylko.firsttask.exception.CustomArrayException;
+
 public interface CustomArrayValidator {
-	String CUSTOM_ARRAY_REGEX = "\\d+";
+	String INTEGER_REGEX = "^?[+-]\\d+";
 	
-	boolean checkCustomArrayString(String[] parsedCustomArray);
+	boolean checkCustomArrayString(String token) throws CustomArrayException;
 }

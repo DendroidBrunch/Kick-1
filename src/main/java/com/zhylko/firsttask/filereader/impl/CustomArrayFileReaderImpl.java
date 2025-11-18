@@ -7,29 +7,33 @@ import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.apache.logging.log4j.Level;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
+
 import com.zhylko.firsttask.exception.CustomArrayException;
 import com.zhylko.firsttask.filereader.CustomArrayFileReader;
 
 public class CustomArrayFileReaderImpl implements CustomArrayFileReader{
+	
+	private static final Logger logger = LogManager.getLogger();
 
 	@Override
-	public List<String> readCustomArrayFile(String filename) throws CustomArrayException {
-		Path filepath = Paths.get(DATA_DIRECTORY, filename);
+	public List<String> readCustomArrayFile(String filepath) throws CustomArrayException {
+		Path path = Paths.get(filepath);
 		
-		if(!Files.exists(filepath)) {
-			throw new CustomArrayException("Input file does not exist");
+		if(!Files.exists(path)) {
+			throw new CustomArrayException("Cannot access file: " + filepath);
 		}
 		
 		List<String> customArrayList = new ArrayList<>();
 		try {
-			customArrayList = Files.readAllLines(filepath);
-			if(customArrayList.isEmpty()) {
-				throw new CustomArrayException("Empty file error");
-			}
-			return customArrayList;
+			customArrayList = Files.readAllLines(path);
 		} catch(IOException e){
-			throw new CustomArrayException("File error");
+			logger.log(Level.ERROR, "File error: " + e);
+			throw new CustomArrayException("File error: " + e);
 		}
+		return customArrayList;
 	}
 
 }

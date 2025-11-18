@@ -1,7 +1,6 @@
 package com.zhylko.firsttask.exception;
 
 public class CustomArrayException extends Exception {
-	private static final long serialVersionUID = 1L;
 
 	public CustomArrayException() {
 		super();

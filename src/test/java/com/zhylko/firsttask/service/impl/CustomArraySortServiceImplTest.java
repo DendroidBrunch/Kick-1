@@ -2,9 +2,6 @@ package com.zhylko.firsttask.service.impl;
 
 import static org.junit.jupiter.api.Assertions.*;
 
-import org.apache.logging.log4j.Level;
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -13,61 +10,71 @@ import com.zhylko.firsttask.entity.CustomArray;
 import com.zhylko.firsttask.exception.CustomArrayException;
 
 class CustomArraySortServiceImplTest {
-	static Logger logger = LogManager.getLogger();
 	
-	CustomArray customArray = CustomArray.newCustomArrayBuilder()
-																				.setCustomArrayID(0)
-																				.setArray(new int[] {1, -3, 2, -4, -5})
-																				.build();
+	CustomArray customArray;
+	
 	@BeforeEach
 	void setUp() throws Exception {
+		customArray = CustomArray.newCustomArrayBuilder()
+				.setCustomArrayId(0)
+				.setArray(new int[] {1, -3, 2, -4, -5})
+				.build();
 	}
 
 	@AfterEach
 	void tearDown() throws Exception {
+		customArray = null;
 	}
 
 	@Test
 	void shakerSort() throws CustomArrayException {
-		logger.log(Level.INFO, customArray.toString());
 		CustomArray expected = CustomArray.newCustomArrayBuilder()
-				.setCustomArrayID(0)
+				.setCustomArrayId(0)
 				.setArray(new int[] {-5, -4, -3, 1, 2})
 				.build();
 		CustomArraySortServiceImpl service = new CustomArraySortServiceImpl();
-		CustomArray actual = service.shakerSort(customArray);
-		logger.log(Level.INFO, "CustomArray sorted with shakerSort: " + actual.toString());
+		service.shakerSort(customArray);
+		CustomArray actual = customArray;
 		assertEquals(expected, actual);
 	}
 	
 	@Test
 	void mergeSort() throws CustomArrayException {
-		logger.log(Level.INFO, customArray.toString());
 		CustomArray expected = CustomArray.newCustomArrayBuilder()
-				.setCustomArrayID(0)
+				.setCustomArrayId(0)
 				.setArray(new int[] {-5, -4, -3, 1, 2})
 				.build();
 		int begin = 0;
 		int end = customArray.getLength();
 		CustomArraySortServiceImpl service = new CustomArraySortServiceImpl();
-		CustomArray actual = service.mergeSort(customArray, begin, end);
-		logger.log(Level.INFO, "CustomArray sorted with mergeSort: " + actual.toString());
+		service.mergeSort(customArray, begin, end);
+		CustomArray actual = customArray;
 		assertEquals(expected, actual);
 	}
 	
 	@Test
 	void quickSort() throws CustomArrayException {
-		logger.log(Level.INFO, customArray.toString());
 		CustomArray expected = CustomArray.newCustomArrayBuilder()
-				.setCustomArrayID(0)
+				.setCustomArrayId(0)
 				.setArray(new int[] {-5, -4, -3, 1, 2})
 				.build();
 		int begin = 0;
 		int end = customArray.getLength();
 		CustomArraySortServiceImpl service = new CustomArraySortServiceImpl();
-		CustomArray actual = service.quickSort(customArray, begin, end);
-		logger.log(Level.INFO, "CustomArray sorted with quickSort: " + actual.toString());
+		service.quickSort(customArray, begin, end);
+		CustomArray actual = customArray;
 		assertEquals(expected, actual);
 	}
-
+	
+	@Test
+	void streamSort() throws CustomArrayException {
+		CustomArray expected = CustomArray.newCustomArrayBuilder()
+				.setCustomArrayId(0)
+				.setArray(new int[] {-5, -4, -3, 1, 2})
+				.build();
+		CustomArraySortServiceImpl service = new CustomArraySortServiceImpl();
+		service.streamSort(customArray);
+		CustomArray actual = customArray;
+		assertEquals(expected, actual);
+	}
 }

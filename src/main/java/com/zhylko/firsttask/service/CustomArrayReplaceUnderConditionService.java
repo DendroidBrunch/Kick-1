@@ -6,5 +6,6 @@ import com.zhylko.firsttask.entity.CustomArray;
 import com.zhylko.firsttask.exception.CustomArrayException;
 
 public interface CustomArrayReplaceUnderConditionService {
-	CustomArray replaceUnderCondition (CustomArray customArray, Predicate<Integer> condition, int newValue) throws CustomArrayException;
+	void replaceUnderCondition (CustomArray customArray, Predicate<Integer> condition, int newValue) throws CustomArrayException;
+	void replaceUnderConditionWithStream (CustomArray customArray, Predicate<Integer> condition, int newValue) throws CustomArrayException;
 }
